@@ -32,7 +32,7 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>/pages/captura.jsp</welcome-file>
+		<welcome-file>/pages/login_principal.jsp</welcome-file>
 	</welcome-file-list>
 
 
