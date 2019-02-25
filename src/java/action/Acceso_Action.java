@@ -86,11 +86,6 @@ public class Acceso_Action extends ActionSupport implements SessionAware{
 
     
     public String MuestraMenuPrincipalUsuario() {
-
-        String action = "AccesoAlmacen.action";
-        String ligaActual = "AccesoAlmacen.action";
-        generaNavegacion(action, ligaActual);
-
         if(cveusuario!=null){
             session.put("cveUsuario", cveusuario);
             session.put("psw", pasusuario);
@@ -112,28 +107,11 @@ public class Acceso_Action extends ActionSupport implements SessionAware{
                 //obteniendo el nombre del usuario
                 nombreUsuario=  usuariocons.getNAMEUSUARIO();
 
-                modulosAUX = (ArrayList<moduloBean>) acceso.consultaModulosPerfilMenu(usuariocons.getPERFIL(), modulo);
-                modulosAUXP = (ArrayList<moduloAuxBean>) acceso.consultaModulosHijosPerfilMenu(usuariocons.getPERFIL(), modulo);
-
-
-                Constantes.enviaMensajeConsola("REGRESE-----------------------");
-                Iterator iterG = modulosAUX.iterator();
-                while(iterG.hasNext()){
-                	moduloBean Concep = (moduloBean) iterG.next();
-                	System.out.println("VALOR -->" + Concep.getCVE_MODPADRE());
-                    System.out.println("VALOR -->" + Concep.getDESC_MOD());
-                    System.out.println("VALOR -->" + Concep.getIMAGEN());
-
-                }
-
-                if(modulosAUX == null){
-                    addActionError("***** Ud. no tiene acceso a este modulo, favor de contacar al administrador del sistema ***** ");
-                    return "ERROR";
-                }
+                
                 Constantes.enviaMensajeConsola("voy a successs-----------------------");
                 return "SUCCESS";
             }else{
-                addActionError("***** Usuario no valido, favor de verificar ***** ");
+                addFieldError("UsuarioNoValido","Usuario no valido, favor de verificar");
                 return "ERROR";
             }
          
@@ -175,16 +153,16 @@ public class Acceso_Action extends ActionSupport implements SessionAware{
 
     //VALIDACIONES
     @Override
-    public void validate() {
+   public void validate() {
 
         try {
 
             if (cveusuario.length() == 0) {
-                addFieldError("ERROR", "Debe Capturar el Nombre de Usuario");
+                addFieldError("ErrorUsuario", "Debe Capturar el  Usuario");
             }
 
             if (pasusuario.length() == 0) {
-                addFieldError("ERROR", "Debe Capturar la Comtraseña de Usuario");
+                addFieldError("ErrorPass", "Debe Capturar la Contraseña del Usuario");
             }
 
         } catch (Exception ex) {

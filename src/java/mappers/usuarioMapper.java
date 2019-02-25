@@ -14,10 +14,9 @@ public class usuarioMapper implements Mapper {
 
 		usr.setNAMEUSUARIO(rs.getString("NAMEUSUARIO"));
 		usr.setPASSWORD(rs.getString("PASSWORD"));
-		usr.setPERFIL(rs.getInt("PERFIL"));
-		usr.setNAMEPERFIL(rs.getString("NAMEPERFIL"));
+		usr.setPERFIL(rs.getInt("PERFIL"));		
 		usr.setUSUARIO(rs.getString("USUARIO"));
-		usr.setFILTRO(rs.getString("FILTRO"));
+		
 		return usr;
 	}
 	

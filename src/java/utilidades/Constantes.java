@@ -15,7 +15,7 @@ public class Constantes implements Serializable {
 	 
 	 //JOVENES CON VALOR
      //TABLAS
-	 public static final String TablaUsuarios="TBL_USUARIOS";
+	 public static final String TablaUsuarios="TBL_USUARIO";
 	 public static final String TablaModulosPerfiles="TBL_MODULOSPERFILES";
 	 public static final String TablaModulos="TBL_MODULOS";
 	 public static final String catJoven= "CATALOGOSERVICIO";

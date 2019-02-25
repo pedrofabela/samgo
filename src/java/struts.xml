@@ -14,17 +14,17 @@
 
         <!-- ACCESO  A MENUS-->
         <action name="acceso" class="action.Acceso_Action" method="verMevu">
-            <result name="SUCCESS">/pages/login.jsp</result>			              
-            <result name="ERROR">/pages/login.jsp</result>
-            <result name="input">/pages/login.jsp</result>
-            <result name="SESION" type="chain">cerrarSesion</result>
+            <result name="SUCCESS">/pages/login_principal.jsp</result>			              
+            <result name="ERROR">/pages/login_principal.jsp</result>
+            <result name="input">/pages/login_principal.jsp</result>
+            <result name="SESION" type="chain">CerrarSesion</result>
         </action>
 		
 		
         <action name="verAcceso" class="action.Acceso_Action" method="MuestraMenuPrincipalUsuario">
-            <result name="SUCCESS">/pages/menuServicioAdmon.jsp</result>			              
-            <result name="ERROR">/pages/login.jsp</result>
-            <result name="input">/pages/login.jsp</result>
+            <result name="SUCCESS">/pages/captura.jsp</result>			              
+            <result name="ERROR">/pages/login_principal.jsp</result>
+            <result name="input">/pages/login_principal.jsp</result>
         </action>
         <!--REGISTRO  -->				
         <!-- CERRAR SESION -->

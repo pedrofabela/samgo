@@ -42,9 +42,9 @@ public class OracleDAOFactory implements DAOFactory {
    	//*/
     
     //DESARROLLO
-    private String username = "hr";	
-	private String url = "jdbc:oracle:thin:@172.20.2.110:1521:xe";	
-    private String password = "udai"; 
+    private String username = "U_ACTMANORG";	
+	private String url = "jdbc:oracle:thin:@10.33.220.169:1521:oraudai";	
+    private String password = "ACTMAN#19"; 
 	//*/
     
     public Statement getSt() {

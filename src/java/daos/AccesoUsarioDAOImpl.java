@@ -19,7 +19,7 @@ public class AccesoUsarioDAOImpl extends OracleDAOFactory implements AccesoUsari
     	//buscando los datos del USUARIO 
 	 public usuarioBean consultaAcceso(String cveUsuario, String pswUsuario) throws Exception{
     		
-    		String query=  " select NAMEUSUARIO, PASSWORD, PERFIL, NAMEPERFIL, USUARIO, FILTRO " +
+    		String query=  " select NAMEUSUARIO, PASSWORD, PERFIL, USUARIO " +
                            " from " + Constantes.TablaUsuarios + " where usuario = '" + cveUsuario +"' AND PASSWORD = '" + pswUsuario + "'"; 
     		 Constantes.enviaMensajeConsola(" query consulta folio--> "+query);	
     		 usuarioBean usu = (usuarioBean) oraDaoFac.queryForObject(query, new usuarioMapper());
