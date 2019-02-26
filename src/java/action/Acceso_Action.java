@@ -7,7 +7,9 @@ import beans.moduloBean;
 import beans.moduloAuxBean;
 import beans.usuarioBean;
 import beans.Navegacion;
+import beans.datosBean;
 import business.AccesoBusiness;
+import business.ConsultaBusiness;
 //BUSINESS
 
 
@@ -52,6 +54,61 @@ public class Acceso_Action extends ActionSupport implements SessionAware{
     Navegacion objNaveg;
     String ligaRegreso = Navegacion.InitialPage;
     String ligaActual =	"";
+    
+    
+    
+    
+     datosBean datos = new datosBean();
+    
+    
+    
+    
+     private ArrayList<datosBean> ListaDatos = new ArrayList<>();
+
+    public String getNivelUsuario() {
+        return nivelUsuario;
+    }
+
+    public void setNivelUsuario(String nivelUsuario) {
+        this.nivelUsuario = nivelUsuario;
+    }
+
+    public Navegacion getObjNaveg() {
+        return objNaveg;
+    }
+
+    public void setObjNaveg(Navegacion objNaveg) {
+        this.objNaveg = objNaveg;
+    }
+
+    public String getLigaActual() {
+        return ligaActual;
+    }
+
+    public void setLigaActual(String ligaActual) {
+        this.ligaActual = ligaActual;
+    }
+
+    public datosBean getDatos() {
+        return datos;
+    }
+
+    public void setDatos(datosBean datos) {
+        this.datos = datos;
+    }
+
+    public ArrayList<datosBean> getListaDatos() {
+        return ListaDatos;
+    }
+
+    public void setListaDatos(ArrayList<datosBean> ListaDatos) {
+        this.ListaDatos = ListaDatos;
+    }
+    
+    
+    
+    
+    
 
     public void setSession(Map session) {
         this.session = session;
@@ -106,6 +163,45 @@ public class Acceso_Action extends ActionSupport implements SessionAware{
 
                 //obteniendo el nombre del usuario
                 nombreUsuario=  usuariocons.getNAMEUSUARIO();
+                
+                
+                 ConsultaBusiness con = new ConsultaBusiness();
+            
+            
+            
+                   ListaDatos= (ArrayList<datosBean>) con.listaDatos(datos);
+                   
+                   
+                   
+                   Iterator LD =ListaDatos.iterator();
+                   
+                   
+                   datosBean obj;
+                   
+                 while (LD.hasNext()) {
+                    obj = (datosBean) LD.next();
+                    
+                    datos.setUNIDAD(obj.getUNIDAD());
+                    datos.setCVE_UNIDAD(obj.getCVE_UNIDAD());
+                    
+                    datos.setFECHA_DOC(obj.getFECHA_DOC());
+                    datos.setFECHA_ACT_OBJ(obj.getRES_ACT_OBJ()+"-"+obj.getFECHA_DOC());
+                     datos.setOBJETIVO(obj.getOBJETIVO());
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                }
+             
+               
+                
+                
+                
+                
+                
 
                 
                 Constantes.enviaMensajeConsola("voy a successs-----------------------");

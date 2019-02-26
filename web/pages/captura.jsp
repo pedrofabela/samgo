@@ -92,9 +92,9 @@
 
                         <tr>
 
-                            <td style="width: 25%;">21014000000000L </td>
-                            <td style="width: 50%;">SUBSECRETARÍA DE ADMINISTRACIÓN Y FINANZAS </td>
-                            <td style="width: 25%;">24/02/19</td>
+                            <td style="width: 25%;"><s:property value="datos.CVE_UNIDAD"></s:property> </td>
+                            <td style="width: 50%;"><s:property value="datos.UNIDAD"></s:property> </td>
+                            <td style="width: 25%;"><s:property value="datos.FECHA_DOC"></s:property></td>
                         </tr>
 
 
@@ -115,8 +115,8 @@
 
                         <tr>
 
-                            <td style="width: 75%;"><s:textarea name="" id="" cssStyle="width: 90%; height: 100px;" cols="40" rows="10" value="Planear, dirigir y controlar los recursos humanos, financieros y materiales que requieran las unidades administrativas que integran la Secretaría de Educación, para el logro de sus objetivos, así como organizar, administrar coordinar y evaluar la operación de los programas de seguro escolar y la distribución de libros de texto gratuitos, bibliotecas, útiles escolares y demás recursos materiales educativos a las alumnas y alumnos de educación básica en la Entidad. "></s:textarea> </td>
-                            <td style="width: 25%;">Pedro Manuel Fabela Martínez-24/02/2019:13:25 </td>
+                            <td style="width: 75%;"><s:textarea name="datos.OBJETIVO" id="datos.OBJETIVO" cssStyle="width: 90%; height: 100px;" cols="40" rows="10" ></s:textarea> </td>
+                            <td style="width: 25%;"><s:property value="datos.FECHA_ACT_OBJ"></s:property></td>
                            
                         </tr>
                             

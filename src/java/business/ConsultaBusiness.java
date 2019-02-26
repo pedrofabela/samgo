@@ -5,8 +5,10 @@
  */
 package business;
 
+import beans.datosBean;
 import daos.ConsultaDao;
 import daos.ConsultaDaoImplement;
+import java.util.List;
 
 
 public class ConsultaBusiness {
@@ -17,15 +19,13 @@ public class ConsultaBusiness {
    this.con=new ConsultaDaoImplement();
    
    
-   
-   
-   
-   
-   
-   
-   
-   
    }
+   
+   public List listaDatos(datosBean datos) throws Exception {
+        List lista = this.con.listaDatos(datos);
+        return lista;
+    }
+   
     
     
     

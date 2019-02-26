@@ -5,10 +5,19 @@
  */
 package daos;
 
+import beans.datosBean;
+import java.util.List;
+
 /**
  *
  * @author pedro
  */
 public interface ConsultaDao {
+    
+    
+    
+     public List listaDatos(datosBean datos) throws Exception;
+     
+     
     
 }
