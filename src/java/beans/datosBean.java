@@ -27,7 +27,18 @@ public class datosBean {
    private String ESTATUS_OBJETIVO;
    private String ESTATUS_COMENTARIO;
    private String ESTATUS_FUNCION;
+   private String USUARIO;
 
+    public String getUSUARIO() {
+        return USUARIO;
+    }
+
+    public void setUSUARIO(String USUARIO) {
+        this.USUARIO = USUARIO;
+    }
+
+   
+   
    
    public String getESTATUS_OBJETIVO() {
         return ESTATUS_OBJETIVO;
