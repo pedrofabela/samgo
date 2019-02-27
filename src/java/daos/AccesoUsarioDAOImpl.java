@@ -64,6 +64,12 @@ public class AccesoUsarioDAOImpl extends OracleDAOFactory implements AccesoUsari
 //En el objeto temporal settear el campo de la tabla, el tipo de dato y el valor a insertar
         temporal = new ObjPrepareStatement("CVE_UNIDAD", "STRING", datos.getCVE_CUNIDAD_CONSULTA());
         arregloCampos.add(temporal);
+         temporal = new ObjPrepareStatement("ESTATUS_OBJETIVO", "STRING", "0");
+        arregloCampos.add(temporal);
+         temporal = new ObjPrepareStatement("ESTATUS_COMENTARIO", "STRING", "0");
+        arregloCampos.add(temporal);
+         temporal = new ObjPrepareStatement("ESTATUS_FUNCION", "STRING", "0");
+        arregloCampos.add(temporal);
        
 
 //Se terminan de adicionar a nuesto ArrayLis los objetos

@@ -50,5 +50,11 @@ public class ConsultaBusiness {
      public boolean actualizaFuncion(datosBean datos) throws Exception {
         return this.con.actualizaFuncion(datos);
     } 
+      public boolean actualizaEstatusFuncion(datosBean datos) throws Exception {
+        return this.con.actualizaEstatusFuncion(datos);
+    } 
      
+        public boolean actualizaresponsables(datosBean datos) throws Exception {
+        return this.con.actualizaresponsables(datos);
+    } 
 }

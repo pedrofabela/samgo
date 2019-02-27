@@ -69,6 +69,19 @@
             <result name="input">/pages/login_principal.jsp</result>
             <result name="SESION" type="chain">CerrarSesion</result>
         </action>
+         <action name="actualizaEstatusFuncion" class="action.ConsultasAccion" method="actualizaEstatusFuncion">
+            <result name="SUCCESS">/pages/captura.jsp</result>			              
+            <result name="ERROR">/pages/login_principal.jsp</result>
+            <result name="input">/pages/login_principal.jsp</result>
+            <result name="SESION" type="chain">CerrarSesion</result>
+        </action>
+        
+         <action name="guardaResponsables" class="action.ConsultasAccion" method="guardaResponsables">
+            <result name="SUCCESS">/pages/captura.jsp</result>			              
+            <result name="ERROR">/pages/login_principal.jsp</result>
+            <result name="input">/pages/login_principal.jsp</result>
+            <result name="SESION" type="chain">CerrarSesion</result>
+        </action>
         
 		
     </package>

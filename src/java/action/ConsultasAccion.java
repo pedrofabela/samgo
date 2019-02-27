@@ -110,10 +110,12 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
                      datos.setOBJETIVO(obj.getOBJETIVO());
                    datos.setCOMENTARIOS(obj.getCOMENTARIOS());
                    datos.setFECHA_ACT_COM(obj.getRES_ACT_COM()+"-"+obj.getFECHA_ACT_COM());
+                     datos.setESTATUS_OBJETIVO(obj.getESTATUS_OBJETIVO());
+                       datos.setESTATUS_COMENTARIO(obj.getESTATUS_COMENTARIO());
+                        datos.setESTATUS_FUNCION(obj.getESTATUS_FUNCION());
                     
-                    
-                    
-                    
+                     datos.setRES_RE(obj.getRES_RE());
+                         datos.setRES_AUT(obj.getRES_AUT());
                     
                     
                 }
@@ -372,8 +374,103 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
             return "ERROR";
         }
     }   
+       
+         
+         
+          public String actualizaEstatusFuncion() {
+
+        //validando session***********************************************************************
+        if (session.get("cveUsuario") != null) {
+            String sUsu = (String) session.get("cveUsuario");
+        } else {
+            addActionError("**** La sesión ha expirado *** favor de iniciar una nueva sesion *** ");
+            return "SESSION";
+        }
+        if (session.containsKey("usuario")) {
+            usuariocons = (usuarioBean) session.get("usuario");
+        } else {
+            addActionError("**** La sesión ha expirado *** favor de iniciar una nueva sesion *** ");
+            return "SESSION";
+        }
+
+        try {
+            
+            
+             ConsultaBusiness con = new ConsultaBusiness();
+            
+            String fecha=fecha();
+            
+             datos.setFECHA(fecha);
+             datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
+             datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
+             
+             con.actualizaEstatusFuncion(datos);
+             
+             
+            
+             iniciDoc();
+            
+              datos.setID_FUNCION("");
+                datos.setACT_FUNCION("");
+                 
+            
+
+            return "SUCCESS";
+
+        } catch (Exception e) {
+
+            TipoException = e.getMessage();
+            return "ERROR";
+        }
+    }   
         
-        
+          
+            public String guardaResponsables() {
+
+        //validando session***********************************************************************
+        if (session.get("cveUsuario") != null) {
+            String sUsu = (String) session.get("cveUsuario");
+        } else {
+            addActionError("**** La sesión ha expirado *** favor de iniciar una nueva sesion *** ");
+            return "SESSION";
+        }
+        if (session.containsKey("usuario")) {
+            usuariocons = (usuarioBean) session.get("usuario");
+        } else {
+            addActionError("**** La sesión ha expirado *** favor de iniciar una nueva sesion *** ");
+            return "SESSION";
+        }
+
+        try {
+            
+            
+             ConsultaBusiness con = new ConsultaBusiness();
+            
+            String fecha=fecha();
+            
+             datos.setFECHA(fecha);
+             datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
+             datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
+             System.out.println("responsables"+datos.getRES_RE()+datos.getRES_AUT());
+             con.actualizaresponsables(datos);
+             
+             
+            
+             iniciDoc();
+            
+              datos.setID_FUNCION("");
+                datos.setACT_FUNCION("");
+                 
+            addFieldError("res", "Datos Guardados");
+
+            return "SUCCESS";
+
+        } catch (Exception e) {
+
+            TipoException = e.getMessage();
+            return "ERROR";
+        }
+    }   
         
      
       public  String fecha() {

@@ -30,8 +30,29 @@ public class datosBean {
    private String USUARIO;
    private String CVE_CUNIDAD_CONSULTA;
    private String ID_FUNCION;
-    private String FECHA;
-     private String ACT_FUNCION;
+   private String FECHA;
+   private String ACT_FUNCION;
+   private String RES_RE;
+   private String RES_AUT;
+       
+       
+       
+
+    public String getRES_RE() {
+        return RES_RE;
+    }
+
+    public void setRES_RE(String RES_RE) {
+        this.RES_RE = RES_RE;
+    }
+
+    public String getRES_AUT() {
+        return RES_AUT;
+    }
+
+    public void setRES_AUT(String RES_AUT) {
+        this.RES_AUT = RES_AUT;
+    }
 
      
      

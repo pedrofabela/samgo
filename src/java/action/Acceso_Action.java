@@ -213,10 +213,11 @@ public class Acceso_Action extends ActionSupport implements SessionAware{
                      datos.setOBJETIVO(obj.getOBJETIVO());
                    datos.setCOMENTARIOS(obj.getCOMENTARIOS());
                    datos.setFECHA_ACT_COM(obj.getRES_ACT_COM()+"-"+obj.getFECHA_ACT_COM());
-                    
-                    
-                    
-                    
+                    datos.setESTATUS_OBJETIVO(obj.getESTATUS_OBJETIVO());
+                     datos.setESTATUS_COMENTARIO(obj.getESTATUS_COMENTARIO());
+                      datos.setESTATUS_FUNCION(obj.getESTATUS_FUNCION());
+                       datos.setRES_RE(obj.getRES_RE());
+                         datos.setRES_AUT(obj.getRES_AUT());
                     
                     
                 }

@@ -100,7 +100,17 @@ public class datosMapper implements Mapper{
             dat.setESTATUS_FUNCION(rs.getString("ESTATUS_FUNCION").trim());
         } else {
             dat.setESTATUS_FUNCION(rs.getString("ESTATUS_FUNCION"));
-        }            
+        }   
+             if (rs.getString("RES_RE") != null) {
+            dat.setRES_RE(rs.getString("RES_RE").trim());
+        } else {
+            dat.setRES_RE(rs.getString("RES_RE"));
+        }   
+             if (rs.getString("RES_AUT") != null) {
+            dat.setRES_AUT(rs.getString("RES_AUT").trim());
+        } else {
+            dat.setRES_AUT(rs.getString("RES_AUT"));
+        }        
                
                
 		return dat;

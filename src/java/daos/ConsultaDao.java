@@ -23,5 +23,7 @@ public interface ConsultaDao {
      public boolean guardaFuncion(datosBean datos) throws Exception;
      public boolean eliminarFuncion(datosBean datos) throws Exception;
       public boolean actualizaFuncion(datosBean datos) throws Exception;
+       public boolean actualizaEstatusFuncion(datosBean datos) throws Exception;
+       public boolean actualizaresponsables(datosBean datos) throws Exception;
     
 }

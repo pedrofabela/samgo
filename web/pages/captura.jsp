@@ -39,7 +39,14 @@
          
     }
     
-    
+    window.onload = function() {
+            	  var pos = window.name || 0;
+            	  window.scrollTo(0, pos);
+            	 }
+            	 window.onunload = function() {
+            	 window.name = self.pageYOffset
+            	    || (document.documentElement.scrollTop + document.body.scrollTop);
+            	 }
     
     
 
@@ -156,7 +163,7 @@
 
                         <tr style="font-weight: bold; background: #e9e8e8; height: 40px;">
                             <td style="width: 75%; ">Objetivo</td>
-                            <td style="width: 25%;">Última actualización</td>
+                            <td style="width: 25%;"><div style="font-size: 12px; padding: 10px;"><s:radio label="Answer" name="datos.ESTATUS_OBJETIVO" id="ESTATUS_OBJETIVO" list="#{'1':'Actualizado','0':'Sin Cambios '}"  /></div></td>
                             
 
                         </tr>
@@ -184,14 +191,14 @@
                     </table>   
                             
                             
-        <div class="mb-1" style="width: 100%; height: 40px; color:#072146; margin-bottom: 30px; font-size: 24px; margin: auto; text-align: center; margin-top: 30px;"><h3 class="mb-0" style="color: #95a0b0;"> Funciones </h3></div>
+        <div class="mb-1" style="width: 100%; height: 40px; color:#072146; margin-bottom: 30px; font-size: 24px; margin: auto; text-align: center; margin-top: 30px;"><h3 class="mb-0" style="color: #95a0b0;"> Funciones </h3>  </div>
   
 
                             <table style="width: 80%; margin: auto; margin-top: 40px; ">
 
                                 <tr style="font-weight: bold; background: #e9e8e8; height: 40px;">
                                     <td style="width: 70%; ">Nueva Función</td>
-                                    <td style="width: 25%;"></td>
+                                    <td style="width: 25%;"><div style="font-size: 12px; padding: 10px;"><s:radio label="Answer" name="datos.ESTATUS_FUNCION" id="ESTATUS_FUNCION" list="#{'1':'Actualizado','0':'Sin Cambios '}"  onchange="javascript:Accion('actualizaEstatusFuncion')" /></div></td>
 
 
                                 </tr>
@@ -265,7 +272,7 @@
 
                                 <tr style="font-weight: bold; background: #e9e8e8; height: 40px;">
                                     <td style="width: 75%; ">Comentario</td>
-                                    <td style="width: 25%;"></td>
+                                    <td style="width: 25%;"><div style="font-size: 12px; padding: 10px;"><s:radio label="Answer" name="datos.ESTATUS_COMENTARIO" id="ESTATUS_COMENTARIO" list="#{'1':'Actualizado','0':'Sin Cambios '}" /></div></td>
                                     
 
 
@@ -314,10 +321,28 @@
       
       </div>
       
+           <div class="mb-1" style="width: 100%; height: 40px; color:#072146; margin-bottom: 30px; font-size: 24px; margin: auto; text-align: center; margin-top: 30px;"><h3 class="mb-0" style="color: #95a0b0;"> Responsables </h3></div>
+
       
+                            <table style="width:80%; margin: auto; margin-top: 30px;">
+                                
+                                <tr>
+                                    <td>
+                                        <s:textfield name="datos.RES_RE" id="RES_RE" class="form-control" placeholder="Nombre de quien revisa"></s:textfield>
+                                    </td>
+                                    
+                                      <td>
+                                          <s:textfield name="datos.RES_AUT" id="RES_AUT" class="form-control" placeholder="Nombre de quien autoriza"></s:textfield>
+                                    </td>
+                                     <td style="width: 25%;"><a href="Javascript:Accion('guardaResponsables')"><div class="btn btn-success" style="margin-top: 10px;"> Guardar Responsables</div></a> </td>
+                                </tr>
+                                    <tr>
+                                <td colspan="2"> <s:fielderror fieldName="res" cssClass="alert alert-success" cssStyle="font-size: 12px; margin-top: 00px; margin-botton:40px;"/> </td>
+                                </tr>
+                                
+                            </table>
       
-      
-      
+     
       
 
       
