@@ -7,6 +7,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
+    <script>
+        var URLactual = window.location;
+        if (URLactual == "http://samgo.edugem.gob.mx/") {
+            location.href = "https://samgo.edugem.gob.mx/";
+        }
+    </script>
+
     <head>
 
         <meta charset="utf-8">
@@ -75,7 +82,7 @@
 
 
 
-                                    <div style="background: #072146; width: 98%;  margin: auto; height: 120px;  text-align: center; color:white;  font-size: 20px; padding: 20px; text-transform: uppercase; margin-top: 10px; border-radius: 5px;">  <h3 class="mb-0" style="font-size: 40px; color: #95a0b0;"> Sistema de actualización del manual general de organización de la SEDUC</h3></div>
+                                    <div style="background: #072146; width: 98%;  margin: auto; height: 120px;  text-align: center; color:white;  font-size: 20px; padding: 20px; text-transform: uppercase; margin-top: 10px; border-radius: 5px;">  <h3 class="mb-0" style="font-size: 40px; color: #95a0b0;"> Plataforma de actualización del manual general de organización de la SEDUC</h3></div>
 
                                     <div style="    width: 98%;  margin: auto; min-height:  400px; max-height: 500px;  text-align: center; color:white;  font-size: 20px; padding: 20px; text-transform: uppercase; margin-top: 100px;"> 
 

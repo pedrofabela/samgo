@@ -18,12 +18,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
+public class ConsultasAccion extends ActionSupport implements SessionAware {
 
-
-public class ConsultasAccion extends ActionSupport implements SessionAware{
-    
-
-     private usuarioBean usuariocons;
+    private usuarioBean usuariocons;
     private String cveusuario;
     private String pasusuario;
     private String nomModulo;
@@ -31,43 +28,32 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
     private String nombreUsuario;
     private String tabSelect;
     private Map session;
-    Navegacion objNaveg; 
-    String ligaRegreso= Navegacion.InitialPage;
-    String ligaactual="";
-     private String TipoError;
+    Navegacion objNaveg;
+    String ligaRegreso = Navegacion.InitialPage;
+    String ligaactual = "";
+    private String TipoError;
     private String TipoException;
 
-      datosBean datos = new datosBean();
-    
-    
-    
-    
-     private ArrayList<datosBean> ListaDatos = new ArrayList<>();
-     private ArrayList<datosBean> ListaFuenciones = new ArrayList<>();
-    
-    
-    
-    
-    
-    
-     private void generaNavegacion(String action, String ligaActual){
+    datosBean datos = new datosBean();
+
+    private ArrayList<datosBean> ListaDatos = new ArrayList<>();
+    private ArrayList<datosBean> ListaFuenciones = new ArrayList<>();
+
+    private void generaNavegacion(String action, String ligaActual) {
 
         objNaveg = (Navegacion) session.get("navegacion");
 
-        if (objNaveg!=null){
+        if (objNaveg != null) {
             ligaRegreso = objNaveg.getReturnPath(ligaActual, action);
-        }else{
+        } else {
             objNaveg = new Navegacion();
             objNaveg.Push(ligaActual, action);
         }
         session.remove("navegacion");
-        session.put("navegacion",objNaveg);
+        session.put("navegacion", objNaveg);
     }
 
-     
-     
-     
-      public String iniciDoc() {
+    public String iniciDoc() {
 
         //validando session***********************************************************************
         if (session.get("cveUsuario") != null) {
@@ -84,50 +70,39 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
         }
 
         try {
-            
-            
-             ConsultaBusiness con = new ConsultaBusiness();
+
+            ConsultaBusiness con = new ConsultaBusiness();
             datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
-             datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
-             datos.setCVE_CUNIDAD_CONSULTA(usuariocons.getCVE_UNIDAD());
-            
-                  ListaDatos= (ArrayList<datosBean>) con.listaDatos(datos);
-                 
-                   
-                   Iterator LD =ListaDatos.iterator();
-                   
-                   
-                   datosBean obj;
-                   
-                 while (LD.hasNext()) {
-                    obj = (datosBean) LD.next();
-                    
-                    datos.setUNIDAD(obj.getUNIDAD());
-                    datos.setCVE_UNIDAD(obj.getCVE_UNIDAD());
-                    
-                    datos.setFECHA_DOC(obj.getFECHA_DOC());
-                    datos.setFECHA_ACT_OBJ(obj.getRES_ACT_OBJ()+"-"+obj.getFECHA_ACT_OBJ());
-                     datos.setOBJETIVO(obj.getOBJETIVO());
-                   datos.setCOMENTARIOS(obj.getCOMENTARIOS());
-                   datos.setFECHA_ACT_COM(obj.getRES_ACT_COM()+"-"+obj.getFECHA_ACT_COM());
-                     datos.setESTATUS_OBJETIVO(obj.getESTATUS_OBJETIVO());
-                       datos.setESTATUS_COMENTARIO(obj.getESTATUS_COMENTARIO());
-                        datos.setESTATUS_FUNCION(obj.getESTATUS_FUNCION());
-                    
-                     datos.setRES_RE(obj.getRES_RE());
-                         datos.setRES_AUT(obj.getRES_AUT());
-                    
-                    
-                }
-             
-                ListaFuenciones= (ArrayList<datosBean>) con.listaFunciones(datos);
-             
-             
-            
-            
-            
-            
-            
+            datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
+            datos.setCVE_CUNIDAD_CONSULTA(usuariocons.getCVE_UNIDAD());
+
+            ListaDatos = (ArrayList<datosBean>) con.listaDatos(datos);
+
+            Iterator LD = ListaDatos.iterator();
+
+            datosBean obj;
+
+            while (LD.hasNext()) {
+                obj = (datosBean) LD.next();
+
+                datos.setUNIDAD(obj.getUNIDAD());
+                datos.setCVE_UNIDAD(obj.getCVE_UNIDAD());
+
+                datos.setFECHA_DOC(obj.getFECHA_DOC());
+                datos.setFECHA_ACT_OBJ(obj.getRES_ACT_OBJ() + "-" + obj.getFECHA_ACT_OBJ());
+                datos.setOBJETIVO(obj.getOBJETIVO());
+                datos.setCOMENTARIOS(obj.getCOMENTARIOS());
+                datos.setFECHA_ACT_COM(obj.getRES_ACT_COM() + "-" + obj.getFECHA_ACT_COM());
+                datos.setESTATUS_OBJETIVO(obj.getESTATUS_OBJETIVO());
+                datos.setESTATUS_COMENTARIO(obj.getESTATUS_COMENTARIO());
+                datos.setESTATUS_FUNCION(obj.getESTATUS_FUNCION());
+
+                datos.setRES_RE(obj.getRES_RE());
+                datos.setRES_AUT(obj.getRES_AUT());
+
+            }
+
+            ListaFuenciones = (ArrayList<datosBean>) con.listaFunciones(datos);
 
             return "SUCCESS";
 
@@ -137,9 +112,8 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
             return "ERROR";
         }
     }
-     
-     
-       public String guardaObjetivo() {
+
+    public String guardaObjetivo() {
 
         //validando session***********************************************************************
         if (session.get("cveUsuario") != null) {
@@ -156,27 +130,20 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
         }
 
         try {
-            
-            
-             ConsultaBusiness con = new ConsultaBusiness();
-            
-            String fecha=fecha();
-            
-             datos.setFECHA(fecha);
-             datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
-             datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
-             
-                 con.actualizaObjetivo(datos);
-             
-             
-            
-        iniciDoc();
-        
-        
+
+            ConsultaBusiness con = new ConsultaBusiness();
+
+            String fecha = fecha();
+
+            datos.setFECHA(fecha);
+            datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
+            datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
+
+            con.actualizaObjetivo(datos);
+
+            iniciDoc();
+
             addFieldError("gobj", "Objetivo guardado");
-            
-           
-            
 
             return "SUCCESS";
 
@@ -186,8 +153,8 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
             return "ERROR";
         }
     }
-       
-        public String guardaComentario() {
+
+    public String guardaComentario() {
 
         //validando session***********************************************************************
         if (session.get("cveUsuario") != null) {
@@ -204,23 +171,20 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
         }
 
         try {
-            
-            
-             ConsultaBusiness con = new ConsultaBusiness();
-            
-            String fecha=fecha();
-            
-             datos.setFECHA(fecha);
-             datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
-             datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
-             
-                 con.actualizaComentario(datos);
-             
-             
-            
-        iniciDoc();
-            
-             addFieldError("gcom", "Comentario guardado");
+
+            ConsultaBusiness con = new ConsultaBusiness();
+
+            String fecha = fecha();
+
+            datos.setFECHA(fecha);
+            datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
+            datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
+
+            con.actualizaComentario(datos);
+
+            iniciDoc();
+
+            addFieldError("gcom", "Comentario guardado");
 
             return "SUCCESS";
 
@@ -230,9 +194,8 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
             return "ERROR";
         }
     }
-        
-        
-        public String nuevafuncion() {
+
+    public String nuevafuncion() {
 
         //validando session***********************************************************************
         if (session.get("cveUsuario") != null) {
@@ -249,26 +212,22 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
         }
 
         try {
-            
-            
-             ConsultaBusiness con = new ConsultaBusiness();
-            
-            String fecha=fecha();
-            
-             datos.setFECHA(fecha);
-             datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
-             datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
-             
-             con.guardaFuncion(datos);
-             
-             
-            
-             iniciDoc();
-             
-             addFieldError("gfun", "Función guardada");
-            
-            
-              datos.setFUNCION("");
+
+            ConsultaBusiness con = new ConsultaBusiness();
+
+            String fecha = fecha();
+
+            datos.setFECHA(fecha);
+            datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
+            datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
+
+            con.guardaFuncion(datos);
+
+            iniciDoc();
+
+            addFieldError("gfun", "Función guardada");
+
+            datos.setFUNCION("");
 
             return "SUCCESS";
 
@@ -278,9 +237,8 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
             return "ERROR";
         }
     }
-     
-        
-     public String borrarFuncion() {
+
+    public String borrarFuncion() {
 
         //validando session***********************************************************************
         if (session.get("cveUsuario") != null) {
@@ -297,26 +255,22 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
         }
 
         try {
-            
-            
-             ConsultaBusiness con = new ConsultaBusiness();
-            
-            String fecha=fecha();
-            
-             datos.setFECHA(fecha);
-             datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
-             datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
-             
-             con.eliminarFuncion(datos);
-             
-             
-            
-             iniciDoc();
-            
-              datos.setID_FUNCION("");
-              
-              addFieldError("bfun", "Función borrada");
-            
+
+            ConsultaBusiness con = new ConsultaBusiness();
+
+            String fecha = fecha();
+
+            datos.setFECHA(fecha);
+            datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
+            datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
+
+            con.eliminarFuncion(datos);
+
+            iniciDoc();
+
+            datos.setID_FUNCION("");
+
+            addFieldError("bfun", "Función borrada");
 
             return "SUCCESS";
 
@@ -325,10 +279,9 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
             TipoException = e.getMessage();
             return "ERROR";
         }
-    }   
-        
-        
-         public String actualizaFuncion() {
+    }
+
+    public String actualizaFuncion() {
 
         //validando session***********************************************************************
         if (session.get("cveUsuario") != null) {
@@ -345,26 +298,22 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
         }
 
         try {
-            
-            
-             ConsultaBusiness con = new ConsultaBusiness();
-            
-            String fecha=fecha();
-            
-             datos.setFECHA(fecha);
-             datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
-             datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
-             
-             con.actualizaFuncion(datos);
-             
-             
-            
-             iniciDoc();
-            
-              datos.setID_FUNCION("");
-                datos.setACT_FUNCION("");
-                  addFieldError("afun", "Función actualizada");
-            
+
+            ConsultaBusiness con = new ConsultaBusiness();
+
+            String fecha = fecha();
+
+            datos.setFECHA(fecha);
+            datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
+            datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
+
+            con.actualizaFuncion(datos);
+
+            iniciDoc();
+
+            datos.setID_FUNCION("");
+            datos.setACT_FUNCION("");
+            addFieldError("afun", "Función actualizada");
 
             return "SUCCESS";
 
@@ -373,11 +322,9 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
             TipoException = e.getMessage();
             return "ERROR";
         }
-    }   
-       
-         
-         
-          public String actualizaEstatusFuncion() {
+    }
+
+    public String actualizaEstatusFuncion() {
 
         //validando session***********************************************************************
         if (session.get("cveUsuario") != null) {
@@ -394,26 +341,21 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
         }
 
         try {
-            
-            
-             ConsultaBusiness con = new ConsultaBusiness();
-            
-            String fecha=fecha();
-            
-             datos.setFECHA(fecha);
-             datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
-             datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
-             
-             con.actualizaEstatusFuncion(datos);
-             
-             
-            
-             iniciDoc();
-            
-              datos.setID_FUNCION("");
-                datos.setACT_FUNCION("");
-                 
-            
+
+            ConsultaBusiness con = new ConsultaBusiness();
+
+            String fecha = fecha();
+
+            datos.setFECHA(fecha);
+            datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
+            datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
+
+            con.actualizaEstatusFuncion(datos);
+
+            iniciDoc();
+
+            datos.setID_FUNCION("");
+            datos.setACT_FUNCION("");
 
             return "SUCCESS";
 
@@ -422,10 +364,9 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
             TipoException = e.getMessage();
             return "ERROR";
         }
-    }   
-        
-          
-            public String guardaResponsables() {
+    }
+
+    public String guardaResponsables() {
 
         //validando session***********************************************************************
         if (session.get("cveUsuario") != null) {
@@ -442,25 +383,22 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
         }
 
         try {
-            
-            
-             ConsultaBusiness con = new ConsultaBusiness();
-            
-            String fecha=fecha();
-            
-             datos.setFECHA(fecha);
-             datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
-             datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
-             System.out.println("responsables"+datos.getRES_RE()+datos.getRES_AUT());
-             con.actualizaresponsables(datos);
-             
-             
-            
-             iniciDoc();
-            
-              datos.setID_FUNCION("");
-                datos.setACT_FUNCION("");
-                 
+
+            ConsultaBusiness con = new ConsultaBusiness();
+
+            String fecha = fecha();
+
+            datos.setFECHA(fecha);
+            datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
+            datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
+            System.out.println("responsables" + datos.getRES_RE() + datos.getRES_AUT());
+            con.actualizaresponsables(datos);
+
+            iniciDoc();
+
+            datos.setID_FUNCION("");
+            datos.setACT_FUNCION("");
+
             addFieldError("res", "Datos Guardados");
 
             return "SUCCESS";
@@ -470,26 +408,56 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
             TipoException = e.getMessage();
             return "ERROR";
         }
-    }   
-        
-     
-      public  String fecha() {
+    }
+
+    public String actualizaFecha() {
+
+        //validando session***********************************************************************
+        if (session.get("cveUsuario") != null) {
+            String sUsu = (String) session.get("cveUsuario");
+        } else {
+            addActionError("**** La sesión ha expirado *** favor de iniciar una nueva sesion *** ");
+            return "SESSION";
+        }
+        if (session.containsKey("usuario")) {
+            usuariocons = (usuarioBean) session.get("usuario");
+        } else {
+            addActionError("**** La sesión ha expirado *** favor de iniciar una nueva sesion *** ");
+            return "SESSION";
+        }
+
+        try {
+
+            ConsultaBusiness con = new ConsultaBusiness();
+
+            String fecha = fecha();
+
+            datos.setFECHA(fecha);
+            datos.setCVE_UNIDAD(usuariocons.getCVE_UNIDAD());
+            datos.setUSUARIO(usuariocons.getNAMEUSUARIO());
+
+            con.actualizaFecha(datos);
+
+            iniciDoc();
+
+            datos.setID_FUNCION("");
+            datos.setACT_FUNCION("");
+
+            return "SUCCESS";
+
+        } catch (Exception e) {
+
+            TipoException = e.getMessage();
+            return "ERROR";
+        }
+    }
+
+    public String fecha() {
         Date ahora = new Date();
         SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss a");
         return formateador.format(ahora);
     }
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
+
     public ArrayList<datosBean> getListaDatos() {
         return ListaDatos;
     }
@@ -585,30 +553,7 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
     public void setListaFuenciones(ArrayList<datosBean> ListaFuenciones) {
         this.ListaFuenciones = ListaFuenciones;
     }
-    
-     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     public Map getSession() {
         return session;
     }
@@ -633,10 +578,6 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
         this.ligaRegreso = ligaRegreso;
     }
 
-   
-
-  
-
     public String getLigaactual() {
         return ligaactual;
     }
@@ -644,8 +585,5 @@ public class ConsultasAccion extends ActionSupport implements SessionAware{
     public void setLigaactual(String ligaactual) {
         this.ligaactual = ligaactual;
     }
-    
-    
-    
-    
+
 }
