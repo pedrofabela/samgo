@@ -28,6 +28,56 @@ public class datosBean {
    private String ESTATUS_COMENTARIO;
    private String ESTATUS_FUNCION;
    private String USUARIO;
+   private String CVE_CUNIDAD_CONSULTA;
+   private String ID_FUNCION;
+    private String FECHA;
+     private String ACT_FUNCION;
+
+     
+     
+    public String getACT_FUNCION() {
+        return ACT_FUNCION;
+    }
+
+    public void setACT_FUNCION(String ACT_FUNCION) {
+        this.ACT_FUNCION = ACT_FUNCION;
+    }
+
+     
+     
+     
+     
+    public String getFECHA() {
+        return FECHA;
+    }
+
+    public void setFECHA(String FECHA) {
+        this.FECHA = FECHA;
+    }
+
+   
+   
+   
+    public String getID_FUNCION() {
+        return ID_FUNCION;
+    }
+
+    public void setID_FUNCION(String ID_FUNCION) {
+        this.ID_FUNCION = ID_FUNCION;
+    }
+   
+   
+   
+
+    public String getCVE_CUNIDAD_CONSULTA() {
+        return CVE_CUNIDAD_CONSULTA;
+    }
+
+    public void setCVE_CUNIDAD_CONSULTA(String CVE_CUNIDAD_CONSULTA) {
+        this.CVE_CUNIDAD_CONSULTA = CVE_CUNIDAD_CONSULTA;
+    }
+   
+   
 
     public String getUSUARIO() {
         return USUARIO;

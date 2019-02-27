@@ -2,6 +2,7 @@
 
 package business;
 
+import beans.datosBean;
 import java.util.List;
 import beans.usuarioBean;
 import daos.AccesoUsarioDAO;
@@ -30,5 +31,12 @@ public class AccesoBusiness {
         List lista = this.accUsrDAO.consultaModulosHijosPerfilMenu(cvePerf, cvemodpadre);
         return lista;
     }
+    
+    public boolean guardaDato(datosBean datos) throws Exception {
+        return this.accUsrDAO.guardaDato(datos);
+    }
+    
+    
+    
    
 }

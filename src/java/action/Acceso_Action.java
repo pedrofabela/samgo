@@ -64,6 +64,21 @@ public class Acceso_Action extends ActionSupport implements SessionAware{
     
     
      private ArrayList<datosBean> ListaDatos = new ArrayList<>();
+     
+     private ArrayList<datosBean> ListaFuenciones = new ArrayList<>();
+
+   
+     
+     
+     public ArrayList<datosBean> getListaFuenciones() {
+        return ListaFuenciones;
+    }
+
+    public void setListaFuenciones(ArrayList<datosBean> ListaFuenciones) {
+        this.ListaFuenciones = ListaFuenciones;
+    }
+     
+     
 
     public String getNivelUsuario() {
         return nivelUsuario;
@@ -166,11 +181,55 @@ public class Acceso_Action extends ActionSupport implements SessionAware{
                 
                 
                  ConsultaBusiness con = new ConsultaBusiness();
+                 
+                 datos.setUSUARIO(nombreUsuario);
+            
+            datos.setCVE_CUNIDAD_CONSULTA(usuariocons.getCVE_UNIDAD());
+            
+                 
             
             
             
-                   ListaDatos= (ArrayList<datosBean>) con.listaDatos(datos);
+              ListaDatos= (ArrayList<datosBean>) con.listaDatos(datos);
+            
+            if(ListaDatos.size()>0){
+                
+                  ListaDatos= (ArrayList<datosBean>) con.listaDatos(datos);
+                 
                    
+                   Iterator LD =ListaDatos.iterator();
+                   
+                   
+                   datosBean obj;
+                   
+                 while (LD.hasNext()) {
+                    obj = (datosBean) LD.next();
+                    
+                    datos.setUNIDAD(obj.getUNIDAD());
+                    datos.setCVE_UNIDAD(obj.getCVE_UNIDAD());
+                    
+                    datos.setFECHA_DOC(obj.getFECHA_DOC());
+                    datos.setFECHA_ACT_OBJ(obj.getRES_ACT_OBJ()+"-"+obj.getFECHA_ACT_OBJ());
+                     datos.setOBJETIVO(obj.getOBJETIVO());
+                   datos.setCOMENTARIOS(obj.getCOMENTARIOS());
+                   datos.setFECHA_ACT_COM(obj.getRES_ACT_COM()+"-"+obj.getFECHA_ACT_COM());
+                    
+                    
+                    
+                    
+                    
+                    
+                }
+             
+                ListaFuenciones= (ArrayList<datosBean>) con.listaFunciones(datos);
+                  
+            }
+            else {
+                
+                acceso.guardaDato(datos);
+                
+                
+                 ListaDatos= (ArrayList<datosBean>) con.listaDatos(datos);
                  
                    
                    Iterator LD =ListaDatos.iterator();
@@ -187,7 +246,8 @@ public class Acceso_Action extends ActionSupport implements SessionAware{
                     datos.setFECHA_DOC(obj.getFECHA_DOC());
                     datos.setFECHA_ACT_OBJ(obj.getRES_ACT_OBJ()+"-"+obj.getFECHA_DOC());
                      datos.setOBJETIVO(obj.getOBJETIVO());
-                    
+                   datos.setCOMENTARIOS(obj.getCOMENTARIOS());
+                   datos.setFECHA_ACT_COM(obj.getRES_ACT_COM()+"-"+obj.getFECHA_ACT_COM());
                     
                     
                     
@@ -196,7 +256,39 @@ public class Acceso_Action extends ActionSupport implements SessionAware{
                     
                 }
              
-               
+                ListaFuenciones= (ArrayList<datosBean>) con.listaFunciones(datos);
+                
+                
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          
+                   
+                 
+                  
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 
                 

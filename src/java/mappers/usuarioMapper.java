@@ -16,6 +16,7 @@ public class usuarioMapper implements Mapper {
 		usr.setPASSWORD(rs.getString("PASSWORD"));
 		usr.setPERFIL(rs.getInt("PERFIL"));		
 		usr.setUSUARIO(rs.getString("USUARIO"));
+                usr.setCVE_UNIDAD(rs.getString("CVE_UNIDAD"));
 		
 		return usr;
 	}

@@ -12,6 +12,18 @@ public class usuarioBean implements Serializable {
 	private String NAMEPERFIL;
 	private String USUARIO;
 	private String FILTRO;
+        private String CVE_UNIDAD;
+
+    public String getCVE_UNIDAD() {
+        return CVE_UNIDAD;
+    }
+
+    public void setCVE_UNIDAD(String CVE_UNIDAD) {
+        this.CVE_UNIDAD = CVE_UNIDAD;
+    }
+        
+        
+        
 	 
 	
 	public String getNAMEUSUARIO() {

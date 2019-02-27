@@ -3,6 +3,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
+<script type="text/javascript">
+
+   
+
+
+    function Accion(accion) {
+
+        document.formularioPrincipal.action = accion;
+        document.formularioPrincipal.submit();
+    }
+
+    
+      function borrar(accion, valor) {
+
+                                    document.formularioPrincipal.ID_FUNCION_CAMPO.value = valor;
+                                    document.formularioPrincipal.action = accion;
+                                    document.formularioPrincipal.target = "_self";
+                                    document.formularioPrincipal.submit();
+
+                                }
+       function popup(id_funcion, funcion) {
+       
+      
+      location.href ="#popup";
+     
+        
+       
+         document.formularioPrincipal.ID_FUNCION_CAMPO.value = id_funcion;
+         document.getElementById('ACT_FUNCION').value = funcion;
+         
+         
+         
+         
+         
+    }
+    
+    
+    
+    
+
+    //PARA REGRESAR EN DONDE SE QUEDO...........
+
+
+</script>
+
+
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -26,10 +72,13 @@
 
   <!-- Custom styles for this template -->
   <link href="css/resume.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/estilo.css"/>
 
 </head>
 
-<body id="page-top">
+    <body id="page-top"> 
+        
+        <s:form name="formularioPrincipal" id="formularioPrincipal">
 
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav" style="background: #072146; " >
     
@@ -116,16 +165,20 @@
                         <tr>
 
                             <td style="width: 75%;"><s:textarea name="datos.OBJETIVO" id="datos.OBJETIVO" cssStyle="width: 90%; height: 100px;" cols="40" rows="10" ></s:textarea> </td>
-                            <td style="width: 25%;"><s:property value="datos.FECHA_ACT_OBJ"></s:property></td>
+                        <td style="width: 25%;"><div style="color:green"> <s:property value="datos.FECHA_ACT_OBJ"></s:property></div></td>
                            
                         </tr>
                             
                         <tr>
 
-                            <td style="width: 75%;"><div class="btn btn-success" style="margin-top: 10px;"> Guardar Objetivo</div> </td>
-                            <td style="width: 25%;"></td>
+                            <td style="width: 75%;"><a href="Javascript:Accion('guardaObjetivo')"><div class="btn btn-success" style="margin-top: 10px;"> Guardar Objetivo</div></a></td>
+                            <td style="width: 25%;"> </td>
                            
                         </tr>
+                            
+                            <tr>
+                                <td colspan="2"> <s:fielderror fieldName="gobj" cssClass="alert alert-success" cssStyle="font-size: 12px; margin-top: 00px; margin-botton:40px;"/> </td>
+                            </tr>
 
 
                     </table>   
@@ -133,65 +186,125 @@
                             
         <div class="mb-1" style="width: 100%; height: 40px; color:#072146; margin-bottom: 30px; font-size: 24px; margin: auto; text-align: center; margin-top: 30px;"><h3 class="mb-0" style="color: #95a0b0;"> Funciones </h3></div>
   
-        
-         <table style="width: 80%; margin: auto; margin-top: 40px; ">
 
-                        <tr style="font-weight: bold; background: #e9e8e8; height: 40px;">
-                            <td style="width: 75%; ">Nueva Función</td>
-                            <td style="width: 25%;"></td>
-                            
+                            <table style="width: 80%; margin: auto; margin-top: 40px; ">
 
-                        </tr>
+                                <tr style="font-weight: bold; background: #e9e8e8; height: 40px;">
+                                    <td style="width: 70%; ">Nueva Función</td>
+                                    <td style="width: 25%;"></td>
 
-
-                        <tr>
-
-                            <td style="width: 75%;"><s:textarea name="" id="" cssStyle="width: 90%; height: 100px;" cols="40" rows="10" value="Planear, dirigir y controlar los recursos humanos, financieros y materiales que requieran las unidades administrativas que integran la Secretaría de Educación, para el logro de sus objetivos, así como organizar, administrar coordinar y evaluar la operación de los programas de seguro escolar y la distribución de libros de texto gratuitos, bibliotecas, útiles escolares y demás recursos materiales educativos a las alumnas y alumnos de educación básica en la Entidad. "></s:textarea> </td>
-                            <td style="width: 25%;"><div class="btn btn-success" style="margin-top: 10px;"> Guardar Función</div> </td>
-                           
-                        </tr>
-                            
-                       
-
-
-                    </table>   
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-                        
-                                <table style="width: 80%; margin: auto; margin-top: 40px; ">
-
-                                    <tr style="font-weight: bold;  background: #e9e8e8; height: 40px;">
-                                        <td style="width: 60%; text-align: center;">Función </td>
-                                        <td style="width: 25%; text-align: center;">Última Actualización</td>
-                                         <td style="width: 25%; text-align: center;">Modificar</td>
-                                        
-                                        
-                                    </tr>
-
-
-                                    <tr>
-
-                                        <td style="width: 60%;"> * Coordinar las funciones relativas a la administración y desarrollo del personal, de los recursos materiales, financieros y servicios generales que requiera la Secretaría de Educación, así como dirigir la evaluación de su aplicación. </td>
-                                    <td style="width: 25%; text-align: center;">Pedro Manuel Fabela Martínez-24/02/2019:13:25 </td>
-                                    <td style="width: 25%; text-align: center; "><span class="fa fa-edit" style="font-size: 40px; color: purple;"</span></td>
 
                                 </tr>
 
 
-                            </table>   
+                                <tr>
 
+                                    <td style="width: 70%;"><s:textarea name="datos.FUNCION" id="datos.FUNCION" cssStyle="width: 90%; height: 100px;" cols="40" rows="10"></s:textarea> </td>
+                                <td style="width: 25%;"><a href="Javascript:Accion('nuevafuncion')"><div class="btn btn-success" style="margin-top: 10px;"> Guardar Función</div></a> </td>
+
+                            </tr>
+                                
+                                <tr>
+                                <td colspan="2"> <s:fielderror fieldName="gfun" cssClass="alert alert-success" cssStyle="font-size: 12px; margin-top: 00px; margin-botton:40px;"/> </td>
+                            </tr>
+
+
+
+
+                           </table>   
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                                <div style="height: 400px; overflow-y:  scroll; margin-top: 20px;" >
+                                
+                                <table  style="width:80% !important; margin: auto; margin-top: 10px; ">
+
+                                    <tr style="font-weight: bold;  background: #e9e8e8; height: 40px;">
+                                        <td  >Función </td>
+                                        <td  >Última Actualización</td>
+                                         <td >Modificar</td>
+                                          <td >Eliminar</td>
+                                        
+                                        
+                                    </tr>
+                                   
+                                <s:iterator value="ListaFuenciones" id="ListaFuenciones" status="stat">
+                                    <tr style="border: 1px solid #999;">
+
+                                        <td style="width: 50%; "> <div style="text-wrap: normal; padding: 5px;"><s:property value="FUNCION" /> </div> </td>
+                                    <td style="width: 30%;" ><div style="text-wrap: normal; padding: 5px; color:green;"><s:property value="RES_ACT_FUNCION" /> -<s:property value="FECHA_ACT_FUNCION"/></div> </td>
+                                    <td style="width: 10%;" align="center" ><div style="text-wrap: normal; padding: 5px;"> <a href="Javascript:popup('<s:property value="ID_FUNCION" />','<s:property value="FUNCION" />')"><span class="fa fa-edit" style="font-size: 30px; color: purple;"</span></a></div></td>
+                                    <td  align="center"><a href="Javascript:borrar('borrarFuncion','<s:property value="ID_FUNCION"/>')"><i class="fa fa-trash" style="font-size:30px;color:red"></i></a></td>
+                                </tr>
+                                </s:iterator>
+                                
+                            </table>   
+                                    
+             </div>
+                            <br></br>
+                            <s:fielderror fieldName="afun" cssClass="alert alert-success" cssStyle="font-size: 12px; margin-top: 00px; margin-botton:40px;"/>
+                            <s:fielderror fieldName="bfun" cssClass="alert alert-danger" cssStyle="font-size: 12px; margin-top: 00px; margin-botton:40px;"/>
+                            
+                            
+                            <!-- COMENTARIOS -->
+                            
+
+                            <div class="mb-1" style="width: 100%; height: 40px; color:#072146; margin-bottom: 30px; font-size: 24px; margin: auto; text-align: center; margin-top: 30px;"><h3 class="mb-0" style="color: #95a0b0;"> Comentario </h3></div>
+
+
+                            <table style="width: 80%; margin: auto; margin-top: 40px; ">
+
+                                <tr style="font-weight: bold; background: #e9e8e8; height: 40px;">
+                                    <td style="width: 75%; ">Comentario</td>
+                                    <td style="width: 25%;"></td>
+                                    
+
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td style="width: 75%;"><s:textarea name="datos.COMENTARIOS" id="datos.COMENTARIOS" cssStyle="width: 90%; height: 100px;" cols="40" rows="10" ></s:textarea> </td>
+                                <td style="width: 25%;"><a href="Javascript:Accion('guardaComentario')"><div class="btn btn-success" style="margin-top: 10px;"> Guardar Comentario</div></a> </td>
+
+                            </tr>
+                                
+                                <tr >
+                                    <td style="width: 75%; "><div style="color:green;">Última modificación: <s:property value="datos.FECHA_ACT_COM"></s:property></div></td>
+                                    <td style="width: 25%;"></td>
+                                    
+
+
+                                </tr>
+                                    
+                                     <tr>
+                                <td colspan="2"> <s:fielderror fieldName="gcom" cssClass="alert alert-success" cssStyle="font-size: 12px; margin-top: 00px; margin-botton:40px;"/> </td>
+                            </tr>
+
+
+
+
+                            </table>     
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             
                             
                             
@@ -218,6 +331,68 @@
                     <br></br>
                     <br></br>
                     <br></br>
+                   
+                    
+                     <div class="modal-wrapper" id="popup">
+                                                    <div class="popup-contenedor">
+                                                        <h2  style="font-size: 16px;" >Actualización de Función </h2>
+
+                                                        <div style="min-height:350px; max-height: 400px; overflow-y: scroll;" >
+                                                            <div id="dvData">
+                                                                 
+                                                      
+                                                           
+                                                            
+                                                        
+                                                            
+                                                            
+                                                                           <div class="row">
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                     
+                                                                        
+                                                                        
+                                                                        <div class="form-group col-lg-4">
+                                                                        <label class="col-form-label " for="domicilio" >Función</label>
+                                                                        <div class="col-sm-auto  ">
+                                                                                  <s:textarea   name="datos.ACT_FUNCION" id="ACT_FUNCION" cols="40" rows="5" ></s:textarea >
+                                                                        </div> 
+                                                                        
+                                                                        
+                                                                        
+                                                                        </div>  
+                                                                        
+                                                                    
+                                                                        
+                                                                   
+                                                                      
+
+                                                                          
+                                                                            
+                                                                            
+                                                                            
+                                                                      
+                                                                    </div>
+                                                      
+                                                                
+                                                                
+                                                               
+                                                                      <div class="col-sm-auto " style="margin-top: 60px;" >
+                                                                                    <a class="btn btn-primary btn-lg" href="Javascript:Accion('actualizaFuncion')" style="background: green; margin-left: 0px;" ><i class="fa fa-user-plus"></i> Actualizar </a>
+                                                                            </div>    
+                                                                            
+                                                                
+                                                                
+                                                                
+                                                                
+                                                            </div>
+                                                             </div>
+                                                            
+                                                        <a class="popup-cerrar" href="#">X</a>
+                                                    </div>
+                                                </div>               
                     
                     
                                     <footer class="footer text-center bg-primary"  style="height: 200px;" >
@@ -272,7 +447,12 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/resume.min.js"></script>
-
+  
+                        <s:textfield name="datos.ID_FUNCION" id="ID_FUNCION_CAMPO" cssStyle="display:none;" />
+  
+  
+  
+</s:form>
 </body>
 
 </html>

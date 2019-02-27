@@ -27,7 +27,28 @@ public class ConsultaBusiness {
     }
    
     
-    
-    
-    
+   public List listaFunciones(datosBean datos) throws Exception {
+        List lista = this.con.listaFunciones(datos);
+        return lista;
+    } 
+   
+     public boolean actualizaObjetivo(datosBean datos) throws Exception {
+        return con.actualizaObjetivo(datos);
+     
+    }   
+     public boolean actualizaComentario(datosBean datos) throws Exception {
+        return con.actualizaComentario(datos);
+     
+    }   
+     
+       public boolean guardaFuncion(datosBean datos) throws Exception {
+        return this.con.guardaFuncion(datos);
+    }
+     public boolean eliminarFuncion(datosBean datos) throws Exception {
+        return this.con.eliminarFuncion(datos);
+    } 
+     public boolean actualizaFuncion(datosBean datos) throws Exception {
+        return this.con.actualizaFuncion(datos);
+    } 
+     
 }

@@ -1,15 +1,18 @@
 
 package daos;
 
+import beans.datosBean;
 import java.sql.*;
 import java.util.List;
 
 import beans.usuarioBean;
+import java.util.ArrayList;
 import mappers.moduloAuxMapper;
 import mappers.moduloMapper;
 
 import mappers.usuarioMapper;
 import utilidades.Constantes;
+import utilidades.ObjPrepareStatement;
  
  
 public class AccesoUsarioDAOImpl extends OracleDAOFactory implements AccesoUsarioDAO {
@@ -19,7 +22,7 @@ public class AccesoUsarioDAOImpl extends OracleDAOFactory implements AccesoUsari
     	//buscando los datos del USUARIO 
 	 public usuarioBean consultaAcceso(String cveUsuario, String pswUsuario) throws Exception{
     		
-    		String query=  " select NAMEUSUARIO, PASSWORD, PERFIL, USUARIO " +
+    		String query=  " select NAMEUSUARIO, PASSWORD, PERFIL, USUARIO, CVE_UNIDAD " +
                            " from " + Constantes.TablaUsuarios + " where usuario = '" + cveUsuario +"' AND PASSWORD = '" + pswUsuario + "'"; 
     		 Constantes.enviaMensajeConsola(" query consulta folio--> "+query);	
     		 usuarioBean usu = (usuarioBean) oraDaoFac.queryForObject(query, new usuarioMapper());
@@ -46,6 +49,26 @@ public class AccesoUsarioDAOImpl extends OracleDAOFactory implements AccesoUsari
 		 List list = null;
 		 list = queryForList(query, new moduloAuxMapper());
 		 return list;
+    }
+    
+    
+    public boolean guardaDato (datosBean datos) throws Exception {
+
+//Crear un ArrayList para agregar los campos a insertar
+        ArrayList<ObjPrepareStatement> arregloCampos = new ArrayList<ObjPrepareStatement>();
+//Crear un objeto de tipo ObjPrepareStatement
+        ObjPrepareStatement temporal;
+//imprimiendo los valores del objeto tipo CCT...........
+        Constantes.enviaMensajeConsola("Entre al DAO del INSERT...................................");
+
+//En el objeto temporal settear el campo de la tabla, el tipo de dato y el valor a insertar
+        temporal = new ObjPrepareStatement("CVE_UNIDAD", "STRING", datos.getCVE_CUNIDAD_CONSULTA());
+        arregloCampos.add(temporal);
+       
+
+//Se terminan de adicionar a nuesto ArrayLis los objetos
+//Ejecutar la funcion del OracleDAOFactory queryInsert, se deber pasar como parmetros la tabla en donde se insertara
+        return oraDaoFac.queryInsert("TBL_DATOS", arregloCampos);
     }
    
 }
